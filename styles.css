@@ -37,6 +37,44 @@ footer {
     padding: 16px;
 }
 
+.card {
+    margin: auto;
+    background-color: #ededeb;
+    padding: 16px;
+    width: fit-content;
+}
+
 .logo {
     color: #415a77;
+}
+
+form {
+    min-width: 300px;
+}
+
+form h2 {
+    margin-bottom: 36px;
+    color: #1b263b;
+}
+
+form label {
+    margin-bottom: 10px;
+}
+
+form input {
+    margin-bottom: 16px;
+    height: 30px;
+    width: 100%;
+    padding: 5px;
+}
+
+.button {
+    background-color: #1b263b;
+    color: #e0e1dd;
+    font-weight: bold;
+    height: 40px;
+}
+
+.error-message {
+    color: red;
 }
