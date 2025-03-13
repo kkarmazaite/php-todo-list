@@ -4,24 +4,39 @@
     include("header.php");
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if(empty($username) || empty($email) || empty( $password)) {
+        if(empty($email) || empty( $password)) {
             $error = "Please fill in all the fields";
         } else {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (name, email, password)
-                    VALUES('$username', '$email','$hash')";
+            $sql = "SELECT *
+                    FROM users
+                    WHERE email='$email'";
 
             try {
-                mysqli_query($conn, $sql);
+                $result = mysqli_query($conn, $sql);
+                
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        if(password_verify($password, $row["password"])){
+                            $_SESSION["user"] = $row["name"];
 
-                $_SESSION["user"] = $username;
-                header('Location: index.php');
+                            header('Location: index.php');
+                        } else {
+                            $loginError = true;
+                        }
+                      
+                    }
+                  } else {
+                    $loginError = true;
+                  }
             } catch(mysqli_sql_exception) {
-                $error = "This email is already taken";
+                $loginError = true;
+            }
+
+            if(isset($loginError)) {
+                $error = "Incorect email or password!";
             }
         }
     }
@@ -40,14 +55,13 @@
         <div class="container">
             <div class="card">
                 <form action="<?php htmlspecialchars( $_SERVER["PHP_SELF"] ) ?>" method="post">
-                    <h2>Registration</h2>
-                    <label>username:</label><br>
-                    <input type="text" name="username" placeholder="name"><br>
+                    <h2>Login</h2>
                     <label>email:</label><br>
                     <input type="email" name="email" placeholder="name@test.com"><br>
                     <label>password:</label><br>
                     <input type="password" name="password" placeholder="password"><br><br>
-                    <input class="button" type="submit" name="submit" value="register"><br>
+                    <input class="button" type="submit" name="submit" value="login"><br>
+                    <a href="registration.php">Register New User</a>
                 </form>
                 
                 <div class="error-message"><?php echo (isset($error))?$error:'';?></div>

@@ -26,12 +26,33 @@ header, footer {
     background-color: #ededeb;
 }
 
+.header-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logout {
+    min-width: fit-content;
+}
+
+.logout input {
+    width: fit-content;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+}
+
 footer {
     color: #778da9;
 }
 
 .container {
-    width: 100%;
     margin: auto;
     max-width: 1536px;
     padding: 16px;
@@ -73,6 +94,11 @@ form input {
     color: #e0e1dd;
     font-weight: bold;
     height: 40px;
+}
+
+.button:hover {
+    cursor: pointer;
+    filter: brightness(1.75);
 }
 
 .error-message {
