@@ -20,13 +20,17 @@
                 if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_assoc($result)) {
                         if(password_verify($password, $row["password"])){
-                            $_SESSION["user"] = $row["name"];
+                            $user = (object) [
+                                "id" =>  $row["id"],
+                                "name" =>  $row["name"],
+                                "email" =>  $row["email"],
+                            ];
+                            $_SESSION["user"] = $user;
 
                             header('Location: index.php');
                         } else {
                             $loginError = true;
                         }
-                      
                     }
                   } else {
                     $loginError = true;

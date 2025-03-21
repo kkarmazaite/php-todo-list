@@ -18,8 +18,7 @@
             try {
                 mysqli_query($conn, $sql);
 
-                $_SESSION["user"] = $username;
-                header('Location: index.php');
+                header('Location: login.php');
             } catch(mysqli_sql_exception) {
                 $error = "This email is already taken";
             }

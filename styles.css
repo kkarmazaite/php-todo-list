@@ -1,13 +1,9 @@
-/* #0d1b2a
-#1b263b
-#415a77
-#778da9 */
-
 * {
     margin: 0;
     padding: 0;
     border:0;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -84,7 +80,7 @@ form label {
 
 form input {
     margin-bottom: 16px;
-    height: 30px;
+    height: 40px;
     width: 100%;
     padding: 5px;
 }
@@ -94,6 +90,7 @@ form input {
     color: #e0e1dd;
     font-weight: bold;
     height: 40px;
+    padding: 5px 10px;
 }
 
 .button:hover {
@@ -102,5 +99,66 @@ form input {
 }
 
 .error-message {
+    color: red;
+}
+
+.home-page .container {
+    height: 100%;
+}
+
+.home-page .card {
+    width: 100%;
+    height: 100%;
+}
+
+.add-task-form {
+    display: flex;
+    gap: 10px;
+}
+
+.add-task-input {
+   width: 600px;
+}
+
+.todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+}
+
+.todo-list-item-task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-list-item-task-name.completed {
+    text-decoration: line-through;
+}
+
+.todo-list-item-checkbox {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #778da9;
+    color: #ededeb;
+    height: 20px;
+    width: 20px;
+    border-radius: 2px;
+}
+
+.todo-list-item-delete-button {
+    text-decoration: none;
+    font-size: 25px;
     color: red;
 }

@@ -2,7 +2,8 @@
     session_start();    
 
     if(isset($_SESSION["user"])){
-        $userInfo = '<span>Welcome, <b>' . $_SESSION["user"].'</b></span>';
+        $userName = $_SESSION["user"]->name;
+        $userInfo = '<span>Welcome, <b>' . $userName.'</b></span>';
         $logOutButton = '<form class="logout" action="' . htmlspecialchars( $_SERVER["PHP_SELF"]) .'" method="post"> <input class="button" type="submit" name="logout" value="logout"></form>';
     }
 
