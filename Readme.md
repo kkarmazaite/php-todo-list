@@ -1,0 +1,1 @@
+A simple PHP todo list to practice and get to know this language
